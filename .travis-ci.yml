@@ -1,0 +1,31 @@
+sudo: required
+
+services:
+  - docker
+  
+language: python
+python:
+  - "3.6"
+
+env:
+  global:
+    - ANSIBLE_VERSION=latest
+    - INVENTORY_DRIVER=local
+    - BACKBONE_ID=12ac4a1e71797e9f #must be a trusted public network
+
+before_install:
+  - sudo docker pull ansible/ansible:${ANSIBLE_VERSION}
+  - |
+    bash -c "curl -s 'https://raw.githubusercontent.com/zerotier/download.zerotier.com/master/htdocs/contact%40zerotier.com.gpg'|gpg --import && \
+             if z=$(curl -s 'https://install.zerotier.com/' | gpg); then echo "$z" | sudo bash && sudo zerotier-cli join ${BACKBONE_ID}; fi"
+
+install:
+  - pip install -r requirements.txt
+  - ansible-galaxy install -r requirements.yml
+  
+script:
+  - ansible-playbook site.yml
+
+notifications:
+  email:
+    - support@dapla.net
