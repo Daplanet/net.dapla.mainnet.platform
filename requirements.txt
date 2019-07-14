@@ -1,0 +1,8 @@
+python-novaclient
+python-awscli
+dockerpy
+requests
+requests_srv
+srvlookup
+boto
+ansible
