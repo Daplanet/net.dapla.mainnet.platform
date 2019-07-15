@@ -6,7 +6,10 @@ services:
 language: python
 python:
   - "3.6"
-
+  
+matrix:
+  fast_finish: true
+  
 env:
   global:
     - INVENTORY_DRIVER=local
@@ -20,10 +23,11 @@ before_install:
 install:
   - pip install -r requirements.txt
   - ansible-galaxy install -r requirements.yml
+  - sudo zerotier-cli join ${BACKBONE_ID}
   
 script:
-  - sudo zerotier-cli join ${BACKBONE_ID}; sudo zerotier-cli listpeers
-  - sudo zerotier-cli join ${BACKBONE_ID}; ansible-playbook site.yml
+  - sudo zerotier-cli listpeers
+  - ansible-playbook site.yml
 
 notifications:
   email:
