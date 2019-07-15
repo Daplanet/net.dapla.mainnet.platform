@@ -1,8 +1,10 @@
 python-novaclient
-python-awscli
+awscli
+s3cmd
 dockerpy
 requests
 requests_srv
 srvlookup
 boto
 ansible
+python-awscli
