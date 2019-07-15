@@ -24,6 +24,7 @@ install:
   - pip install -r requirements.txt
   - ansible-galaxy install -r requirements.yml
   - sudo zerotier-cli join ${BACKBONE_ID}
+  - sudo zerotier-cli listnetworks | grep ${BACKBONE_ID} 2>&1 >/dev/null
   
 script:
   - sudo zerotier-cli listpeers
