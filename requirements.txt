@@ -1,7 +1,6 @@
 python-novaclient
 awscli
 s3cmd
-dockerpy
 requests
 requests_srv
 srvlookup
