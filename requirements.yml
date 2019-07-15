@@ -1,3 +1,4 @@
-dependencies:
-  - m4rcu5nl.zerotier-one
-  - thedumbtechguy.ping
+---
+- src: m4rcu5nl.zerotier-one
+- src: thedumbtechguy.ping
+...
