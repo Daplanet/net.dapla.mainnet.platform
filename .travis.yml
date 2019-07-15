@@ -7,11 +7,9 @@ language: python
 python:
   - "3.6"
 
-#BACKBONE_ID must be a trusted public network
 env:
   global:
     - INVENTORY_DRIVER=local
-    - 
     
 before_install:
   - sudo docker pull ansible/ansible-runner
