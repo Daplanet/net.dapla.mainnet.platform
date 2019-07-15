@@ -15,14 +15,14 @@ before_install:
   - sudo docker pull ansible/ansible-runner
   - |
     bash -c "curl -s 'https://raw.githubusercontent.com/zerotier/download.zerotier.com/master/htdocs/contact%40zerotier.com.gpg'|gpg --import && \
-             if z=$(curl -s 'https://install.zerotier.com/' | gpg); then echo "$z" | sudo bash && sudo zerotier-cli join ${BACKBONE_ID}; fi"
+             if z=$(curl -s 'https://install.zerotier.com/' | gpg); then echo "$z" | sudo bash ; fi"
 
 install:
   - pip install -r requirements.txt
   - ansible-galaxy install -r requirements.yml
   
 script:
-  - sudo zerotier-cli listnetworks
+  - sudo zerotier-cli join ${BACKBONE_ID}
   - sudo zerotier-cli listpeers
   - ansible-playbook site.yml
 
