@@ -7,11 +7,12 @@ language: python
 python:
   - "3.6"
 
+#BACKBONE_ID must be a trusted public network
 env:
   global:
     - INVENTORY_DRIVER=local
-    - BACKBONE_ID=12ac4a1e71797e9f #must be a trusted public network
-
+    - 
+    
 before_install:
   - sudo docker pull ansible/ansible-runner
   - |
@@ -23,6 +24,7 @@ install:
   - ansible-galaxy install -r requirements.yml
   
 script:
+  - sudo zerotier-cli listpeers
   - ansible-playbook site.yml
 
 notifications:
