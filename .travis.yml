@@ -9,12 +9,11 @@ python:
 
 env:
   global:
-    - ANSIBLE_VERSION=latest
     - INVENTORY_DRIVER=local
     - BACKBONE_ID=12ac4a1e71797e9f #must be a trusted public network
 
 before_install:
-  - sudo docker pull ansible/ansible:${ANSIBLE_VERSION}
+  - sudo docker pull ansible/ansible-runner
   - |
     bash -c "curl -s 'https://raw.githubusercontent.com/zerotier/download.zerotier.com/master/htdocs/contact%40zerotier.com.gpg'|gpg --import && \
              if z=$(curl -s 'https://install.zerotier.com/' | gpg); then echo "$z" | sudo bash && sudo zerotier-cli join ${BACKBONE_ID}; fi"
