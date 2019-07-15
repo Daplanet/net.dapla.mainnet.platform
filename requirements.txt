@@ -7,4 +7,3 @@ requests_srv
 srvlookup
 boto
 ansible
-python-awscli
