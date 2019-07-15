@@ -22,9 +22,8 @@ install:
   - ansible-galaxy install -r requirements.yml
   
 script:
-  - |
-    sudo zerotier-cli join ${BACKBONE_ID} && sudo zerotier-cli listpeers && \
-    ansible-playbook site.yml
+  - sudo zerotier-cli join ${BACKBONE_ID}; sudo zerotier-cli listpeers
+  - sudo zerotier-cli join ${BACKBONE_ID}; ansible-playbook site.yml
 
 notifications:
   email:
