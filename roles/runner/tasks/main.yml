@@ -1,0 +1,4 @@
+---
+- name: Pulls latest ansible-runner image
+  community.general.docker_image: ansible/ansible-runner:latest
+...
