@@ -1,0 +1,19 @@
+---
+on: workflow_dispatch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest    
+    env:
+      INVENTORY_DRIVER: local
+      BACKBONE_ID: {{ secrets.ZT_BACKBONE_ID }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: py-actions/py-dependency-install@v2
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+          playbook: deploy.yml
+          requirements: requirements.yml
+      - uses: dawidd6/actin-ansible-playbook@v2
+          playbook: site.yml
+          requirements: requirements.yml
